@@ -9,7 +9,6 @@ export const fr: Words = {
     sections: "Sections",
     links: ["Connexions", "Correspondances", "Preuve", "Sécurité", "Questions"],
     contact: "Contact",
-    github: "Relay sur GitHub",
   },
   download: {
     button: "Télécharger",
