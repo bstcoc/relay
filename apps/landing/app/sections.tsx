@@ -8,7 +8,7 @@ import { BRAND, FOCUS, FRAME, LEAD, LINK, SECTION_GAP, SECTION_TITLE, SMALL } fr
 import { BUILDS, RELEASES } from "./download";
 import { useLanguage } from "./i18n";
 import { NAV_LINKS } from "./nav";
-import { ACCESS } from "./words";
+import { CONTACT, REPOSITORY } from "./words";
 
 const UNDERLINE = "font-medium underline decoration-border-strong underline-offset-4 transition-[text-decoration-color] duration-150 hover:decoration-ink motion-reduce:transition-none";
 
@@ -21,7 +21,7 @@ export function Faq() {
         <h2 className={SECTION_TITLE}>{words.title}</h2>
         <p className={LEAD}>{words.lead}</p>
         <p className="mt-4 text-ink-muted">
-          {words.more} <a href={ACCESS} className={cn(UNDERLINE, FOCUS, "text-ink")}>{words.write}</a>
+          {words.more} <a href={CONTACT} className={cn(UNDERLINE, FOCUS, "text-ink")}>{words.write}</a>
         </p>
       </div>
       <div className="border-t border-border">
@@ -46,7 +46,7 @@ export function Footer() {
     { title: words.product, links: NAV_LINKS.map((href, index) => [t.nav.links[index]!, href]) },
     { title: words.databases, links: words.databaseItems.map((item) => [item, null]) },
     { title: words.download, links: BUILDS.flatMap((file, index) => file ? [[t.download.builds[index]!, `${RELEASES}/${file}`]] : []) },
-    { title: words.company, links: [[words.changelog, "/changelog/"], [words.contact, ACCESS], [words.terms, "/terms/"], [words.privacy, "/privacy/"], [words.legal, "/legal/"]] },
+    { title: words.company, links: [[words.source, REPOSITORY], [words.license, `${REPOSITORY}/blob/main/LICENSE`], [words.changelog, "/changelog/"], [words.contact, CONTACT], [words.terms, "/terms/"], [words.privacy, "/privacy/"], [words.legal, "/legal/"]] },
   ];
   return (
     <footer className="footer relative mt-[clamp(120px,11vw,220px)] overflow-hidden border-t border-border bg-background">

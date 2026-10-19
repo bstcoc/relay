@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { BRAND, FRAME, LINK } from "./classes";
 import { Download } from "./download";
 import { LanguageToggle, useLanguage } from "./i18n";
-import { ACCESS } from "./words";
+import { CONTACT } from "./words";
 
 export const NAV_LINKS = ["#connect", "#map", "#proof", "#security", "#faq"];
 
@@ -49,7 +49,7 @@ export function Nav() {
         <div className="ml-auto flex gap-2">
           <LanguageToggle />
           <Button asChild variant="outline" className="max-[760px]:hidden">
-            <a href={ACCESS}>{t.nav.contact}</a>
+            <a href={CONTACT}>{t.nav.contact}</a>
           </Button>
           <span className={heroActionsVisible ? "hidden" : "contents"} >
             <Download align="end" />

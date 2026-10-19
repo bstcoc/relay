@@ -12,7 +12,7 @@ import { useLanguage } from "./i18n";
 import { HERO_ACTIONS, Nav } from "./nav";
 import { type Engine, LogoMarquee } from "./marquee";
 import { Faq, Footer } from "./sections";
-import { ACCESS } from "./words";
+import { REPOSITORY } from "./words";
 
 const ENGINES: Engine[] = [
   { name: "PostgreSQL", logo: "/logos/postgresql.svg" },
@@ -29,7 +29,7 @@ function Actions({ id, label, className }: { id?: string; label: string; classNa
   return (
     <div id={id} className={cn("flex flex-wrap gap-3", className)}>
       <Download />
-      <Button asChild variant="outline"><a href={ACCESS}>{label}</a></Button>
+      <Button asChild variant="outline"><a href={REPOSITORY}>{label}</a></Button>
     </div>
   );
 }
@@ -88,7 +88,7 @@ export default function Landing() {
               {t.hero.title.map((line, index) => <span key={line} className={index === 1 ? "text-ink-muted" : undefined}>{line}</span>)}
             </h1>
             <p className={cn(LEAD, "max-w-[30em]")}>{t.hero.lead}</p>
-            <Actions id={HERO_ACTIONS} label={t.hero.access} className="mt-2 justify-center" />
+            <Actions id={HERO_ACTIONS} label={t.hero.source} className="mt-2 justify-center" />
             <span className={cn(SMALL, "text-ink-muted")}>{t.hero.note}</span>
           </div>
           <div className="mt-[clamp(40px,3.5vw,64px)] w-full animate-rise [animation-delay:200ms] motion-reduce:animate-none">
@@ -149,7 +149,7 @@ export default function Landing() {
         <section className={cn(FRAME, SECTION_GAP, "flex flex-col items-center gap-8 text-center")}>
           <h2 className="text-[clamp(36px,3.2vw,64px)] leading-none font-semibold tracking-[-0.035em]">{t.closing.title}</h2>
           <p className={LEAD}>{t.closing.lead}</p>
-          <Actions label={t.closing.talk} className="justify-center" />
+          <Actions label={t.closing.source} className="justify-center" />
         </section>
       </main>
       <Footer />
