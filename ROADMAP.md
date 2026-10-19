@@ -36,11 +36,6 @@ self-hosted).
 One adapter per database, in order of demand: Oracle, MongoDB, Firebase
 (Firestore), then the next ones.
 
-## Web app and agent
-
-The app in the browser, with an agent installed on the user's side to reach
-private databases.
-
 ## Later
 
 Mappings suggested by a language model, Power BI export, business rules

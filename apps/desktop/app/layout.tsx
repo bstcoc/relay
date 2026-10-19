@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import "@relay/ui/globals.css";
 import "./base.css";
 import { AccountProvider } from "./account";
+import { DesktopOnly } from "./desktop-only";
 import { PreferencesProvider } from "./preferences";
 
 const sans = Geist({ subsets: ["latin"], variable: "--font-geist" });
@@ -35,7 +36,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div data-drag-region
           className="fixed inset-x-0 top-0 z-30 hidden h-7 [[data-platform=mac]_body:not(:has([data-slot=sidebar-wrapper]))_&]:block" />
         <PreferencesProvider>
-          <AccountProvider>{children}</AccountProvider>
+          <DesktopOnly>
+            <AccountProvider>{children}</AccountProvider>
+          </DesktopOnly>
         </PreferencesProvider>
       </body>
     </html>
