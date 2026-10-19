@@ -12,6 +12,7 @@ import { useLanguage } from "./i18n";
 import { HERO_ACTIONS, Nav } from "./nav";
 import { type Engine, LogoMarquee } from "./marquee";
 import { Faq, Footer } from "./sections";
+import { GitHubMark } from "./github-mark";
 import { REPOSITORY } from "./words";
 
 const ENGINES: Engine[] = [
@@ -29,7 +30,7 @@ function Actions({ id, label, className }: { id?: string; label: string; classNa
   return (
     <div id={id} className={cn("flex flex-wrap gap-3", className)}>
       <Download />
-      <Button asChild variant="outline"><a href={REPOSITORY}>{label}</a></Button>
+      <Button asChild variant="outline"><a href={REPOSITORY}><GitHubMark />{label}</a></Button>
     </div>
   );
 }
