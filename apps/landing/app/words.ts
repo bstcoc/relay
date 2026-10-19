@@ -1,5 +1,6 @@
-export const ACCESS =
-  "mailto:bastien.cochet.pro@gmail.com?subject=Relay%20early%20access&body=Hello%2C%20I%20would%20like%20to%20try%20Relay.";
+export const CONTACT = "mailto:bastien.cochet.pro@gmail.com?subject=Relay";
+
+export const REPOSITORY = "https://github.com/bstcoc/relay";
 
 const thin = " ";
 

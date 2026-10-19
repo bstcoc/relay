@@ -18,9 +18,9 @@ export const fr: Words = {
   hero: {
     title: ["Migrez vos bases", "Prouvez chaque ligne"],
     lead: "Une app de bureau qui déplace les données entre deux bases, puis vérifie les deux côtés",
-    access: "Demander un accès anticipé",
+    source: "Voir sur GitHub",
     engines: "Bases et fichiers pris en charge par Relay",
-    note: "Gratuit. macOS, Windows et Linux",
+    note: "Gratuit et open source. macOS, Windows et Linux",
   },
   features: {
     connect: {
@@ -49,8 +49,8 @@ export const fr: Words = {
   },
   closing: {
     title: "Votre prochaine migration, prouvée",
-    lead: "Téléchargez Relay gratuitement, pour chaque membre de votre équipe",
-    talk: "Nous contacter",
+    lead: "Gratuit et open source, pour toute votre équipe",
+    source: "Lire le code",
   },
   capabilities: { label: "Fonctionne avec" },
   environments: { Production: "Production", Staging: "Préproduction", Test: "Test", Development: "Développement" },
@@ -103,6 +103,8 @@ export const fr: Words = {
     more: "Une autre question\u00a0?",
     write: "Écrivez-nous",
     items: [
+      { question: "Relay est-il vraiment gratuit\u00a0?", answer: "Oui. Relay est open source, sous licence Apache 2.0\u00a0: ni clé de licence, ni abonnement, ni essai. Téléchargez-le, utilisez-le au travail, lisez et modifiez le code." },
+      { question: "Où est le code source\u00a0?", answer: "Sur GitHub, à l’adresse github.com/bstcoc/relay. Les tickets et les pull requests sont les bienvenus." },
       { question: "Mes lignes passent-elles par les serveurs de Relay\u00a0?", answer: "Non. Le moteur tourne sur votre ordinateur et lit vos bases directement. Relay ne garde que des métadonnées, comme votre équipe, les noms et hôtes des connexions, les correspondances validées, les décisions et les chiffres de chaque rapport. Jamais une ligne ni une valeur." },
       { question: "Avec quelles bases Relay fonctionne-t-il\u00a0?", answer: "PostgreSQL, Supabase, Neon, SQL Server, MySQL et SQLite, ainsi que les fichiers CSV et Parquet. La source et la cible peuvent utiliser des moteurs et des schémas différents." },
       { question: "Faut-il écrire un script ou un fichier de configuration\u00a0?", answer: "Non. Vous connectez deux bases, acceptez les correspondances proposées colonne par colonne, lancez un essai à blanc, puis migrez. Tout se passe dans l’app." },
@@ -125,6 +127,8 @@ export const fr: Words = {
     terms: "Conditions d’utilisation",
     privacy: "Confidentialité",
     changelog: "Nouveautés",
+    source: "Code source",
+    license: "Licence Apache 2.0",
   },
   fragments: {
     label: "Correspondances proposées",
@@ -144,16 +148,16 @@ export const fr: Words = {
   },
   terms: {
     title: "Conditions d’utilisation",
-    updated: "Mises à jour le 10 octobre 2026",
+    updated: "Mise à jour le 19 octobre 2026",
     sections: [
-      { heading: "Qui nous sommes", paragraphs: ["Relay est une app de bureau qui migre des données entre des bases et en vérifie le résultat. Elle est éditée par Bastien Cochet, joignable à bastien.cochet.pro@gmail.com. Ces conditions s’appliquent à l’app Relay, à ses mises à jour et à ce site. En créant un compte ou en utilisant l’app, vous les acceptez."] },
+      { heading: "Qui nous sommes", paragraphs: ["Relay est une app de bureau qui migre des données entre des bases et en vérifie le résultat. Elle est éditée par Bastien Cochet, joignable à bastien.cochet.pro@gmail.com. Relay est open source\u00a0: son code est publié sous licence Apache 2.0, qui encadre la façon de l’utiliser, de le copier et de le modifier. Ces conditions s’appliquent à l’app Relay, à ses mises à jour et à ce site. En créant un compte ou en utilisant l’app, vous les acceptez."] },
       { heading: "Votre compte et votre équipe", paragraphs: ["Vous vous connectez avec un compte Google ou Microsoft. Chaque compte appartient à une ou plusieurs équipes, qui portent les membres, les rôles, les connexions et les migrations. Vous protégez votre connexion ; les propriétaires et administrateurs d’une équipe répondent de qui ils invitent et de ce que les membres y font."] },
       { heading: "Vos données", paragraphs: [
         "Les lignes et valeurs de vos bases restent sur votre ordinateur ou votre réseau : le moteur Relay tourne en local et ne nous les envoie jamais. Vous restez propriétaire de vos données et responsable d’avoir le droit de les lire, de les déplacer et de les transformer.",
         "Relay propose des correspondances et signale les écarts, mais n’applique rien qu’une personne n’a pas validé, et propose un essai à blanc avant d’écrire dans une cible. Vous décidez de ce que vous acceptez et du moment où vous écrivez. Gardez une sauvegarde de vos bases avant une migration.",
       ] },
       { heading: "Usage acceptable", paragraphs: ["N’utilisez pas Relay pour accéder à des bases que vous n’avez pas le droit d’utiliser, pour enfreindre la loi, ni pour nuire au service ou à ses autres utilisateurs."] },
-      { heading: "Disponibilité et responsabilité", paragraphs: ["Nous travaillons à ce que Relay soit fiable et exact, mais l’app est fournie en l’état, sans garantie qu’elle convienne à chaque usage ni qu’elle fonctionne sans interruption. Dans les limites permises par la loi, notre responsabilité totale est plafonnée aux sommes payées par votre équipe dans les 12 mois précédant le fait en cause, et nous ne répondons pas des pertes indirectes, comme une perte de données, de chiffre d’affaires ou d’activité."] },
+      { heading: "Disponibilité et responsabilité", paragraphs: ["Nous travaillons à ce que Relay soit fiable et exact, mais l’app est fournie gratuitement et en l’état, sans garantie qu’elle convienne à chaque usage ni qu’elle fonctionne sans interruption, comme le prévoit aussi la licence Apache 2.0. Dans les limites permises par la loi, nous ne répondons d’aucune perte liée à son usage, comme une perte de données, de chiffre d’affaires ou d’activité."] },
       { heading: "Suspension et résiliation", paragraphs: ["Vous pouvez cesser d’utiliser Relay et supprimer votre compte à tout moment. Nous pouvons suspendre un compte qui enfreint ces conditions, en vous en donnant la raison chaque fois que possible."] },
       { heading: "Modifications", paragraphs: ["Nous pouvons mettre à jour ces conditions. Nous vous prévenons dans l’app ou par e-mail avant qu’un changement important prenne effet. Si vous continuez à utiliser Relay ensuite, les nouvelles conditions s’appliquent."] },
       { heading: "Droit applicable et litiges", paragraphs: ["Ces conditions sont régies par le droit français. Avant toute action en justice, écrivez-nous pour chercher un accord. Si vous êtes un consommateur, vous gardez aussi la protection de la loi de votre pays de résidence et pouvez recourir gratuitement à un médiateur de la consommation."] },

@@ -16,9 +16,9 @@ export const en = {
   hero: {
     title: ["Migrate any database", "Prove every row"],
     lead: "A desktop app that moves data between any two databases, then checks both sides",
-    access: "Get early access",
+    source: "View on GitHub",
     engines: "Databases and files Relay works with",
-    note: "Free. macOS, Windows and Linux",
+    note: "Free and open source. macOS, Windows and Linux",
   },
   features: {
     connect: {
@@ -47,8 +47,8 @@ export const en = {
   },
   closing: {
     title: "Your next migration, proved",
-    lead: "Download Relay for free, for every member of your team",
-    talk: "Talk to us",
+    lead: "Free and open source, for everyone on your team",
+    source: "Read the source",
   },
   capabilities: { label: "Works with" },
   environments: { Production: "Production", Staging: "Staging", Test: "Test", Development: "Development" } as Record<string, string>,
@@ -101,6 +101,8 @@ export const en = {
     more: "Another question?",
     write: "Write to us",
     items: [
+      { question: "Is Relay really free?", answer: "Yes. Relay is open source under the Apache 2.0 license: no license key, no subscription, no trial. Download it, use it at work, read and change the code." },
+      { question: "Where is the source code?", answer: "On GitHub, at github.com/bstcoc/relay. Issues and pull requests are welcome." },
       { question: "Do my rows go through Relay’s servers?", answer: "No. The engine runs on your computer and reads your databases directly. Relay keeps metadata only, such as your team, connection names and hosts, validated mappings, decisions and the numbers of each report. Never a row or a value." },
       { question: "Which databases does Relay work with?", answer: "PostgreSQL, Supabase, Neon, SQL Server, MySQL and SQLite, plus CSV and Parquet files. Source and target can run on different engines, with different schemas." },
       { question: "Do I need to write a script or a config file?", answer: "No. You connect two databases, accept the suggested mapping column by column, run a dry run, then migrate. Everything happens in the app." },
@@ -123,6 +125,8 @@ export const en = {
     terms: "Terms of service",
     privacy: "Privacy policy",
     changelog: "Changelog",
+    source: "Source code",
+    license: "License, Apache 2.0",
   },
   fragments: {
     label: "Suggested mapping",
@@ -142,16 +146,16 @@ export const en = {
   },
   terms: {
     title: "Terms of service",
-    updated: "Last updated on 10 October 2026",
+    updated: "Last updated on 19 October 2026",
     sections: [
-      { heading: "Who we are", paragraphs: ["Relay is a desktop app that migrates data between databases and checks the result. It is published by Bastien Cochet, reachable at bastien.cochet.pro@gmail.com. These terms apply to the Relay app, its updates and this website. By creating an account or using the app, you accept them."] },
+      { heading: "Who we are", paragraphs: ["Relay is a desktop app that migrates data between databases and checks the result. It is published by Bastien Cochet, reachable at bastien.cochet.pro@gmail.com. Relay is open source: its code is published under the Apache License 2.0, which governs how you may use, copy and change it. These terms apply to the Relay app, its updates and this website. By creating an account or using the app, you accept them."] },
       { heading: "Your account and your team", paragraphs: ["You sign in with a Google or Microsoft account. Each account belongs to one or more teams, which hold members, roles, connections and migrations. You keep your sign-in secure, and the owners and admins of a team are responsible for who they invite and for what members do in it."] },
       { heading: "Your data", paragraphs: [
         "The rows and values of your databases stay on your computer or your network: the Relay engine runs locally and never sends them to us. You remain the owner of your data and responsible for having the right to read, move and transform it.",
         "Relay suggests mappings and reports discrepancies, but applies nothing a person has not validated, and offers a dry run before writing to a target. You decide what to accept and when to write. Keep backups of your databases before a migration.",
       ] },
       { heading: "Acceptable use", paragraphs: ["Do not use Relay to access databases you are not allowed to use, to break the law, or to harm the service or other users."] },
-      { heading: "Availability and liability", paragraphs: ["We work to keep Relay reliable and correct, but the app is provided as is, without a guarantee that it fits every use or runs without interruption. To the extent the law allows, our total liability is limited to the amounts your team paid in the 12 months before the event, and we are not liable for indirect losses such as lost data, profit or business."] },
+      { heading: "Availability and liability", paragraphs: ["We work to keep Relay reliable and correct, but the app is provided free of charge and as is, without a guarantee that it fits every use or runs without interruption, as the Apache License 2.0 also states. To the extent the law allows, we are not liable for any loss arising from its use, such as lost data, profit or business."] },
       { heading: "Suspension and termination", paragraphs: ["You can stop using Relay and delete your account at any time. We may suspend an account that breaks these terms, after telling you why whenever possible."] },
       { heading: "Changes", paragraphs: ["We may update these terms. We will tell you in the app or by email before an important change takes effect. If you keep using Relay afterwards, the new terms apply."] },
       { heading: "Law and disputes", paragraphs: ["These terms are governed by French law. Before any legal action, write to us so we can look for an agreement. If you are a consumer, you also keep the protection of the law of your country of residence, and you can use a consumer mediator."] },
