@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import { BRAND, FRAME, LINK } from "./classes";
 import { Download } from "./download";
 import { LanguageToggle, useLanguage } from "./i18n";
-import { GitHubMark } from "./github-mark";
-import { CONTACT, REPOSITORY } from "./words";
+import { CONTACT } from "./words";
 
 export const NAV_LINKS = ["#connect", "#map", "#proof", "#security", "#faq"];
 
@@ -48,9 +47,6 @@ export function Nav() {
           ))}
         </nav>
         <div className="ml-auto flex gap-2">
-          <Button asChild variant="ghost" size="icon-sm" className="text-ink-muted hover:text-ink">
-            <a href={REPOSITORY} aria-label={t.nav.github}><GitHubMark className="size-[18px]" /></a>
-          </Button>
           <LanguageToggle />
           <Button asChild variant="outline" className="max-[760px]:hidden">
             <a href={CONTACT}>{t.nav.contact}</a>
