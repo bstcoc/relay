@@ -5,7 +5,6 @@ import { Button } from "@relay/ui/components/button";
 import { Input } from "@relay/ui/components/input";
 import { Label } from "@relay/ui/components/label";
 import { GoogleLogo, MicrosoftLogo } from "@relay/ui/components/provider-logos";
-import { Separator } from "@relay/ui/components/separator";
 import { logInWith, type Provider, supabase, useAccount, useGuard } from "../account";
 import { errorMessage } from "../engine";
 import { usePreferences } from "../preferences";
@@ -55,66 +54,6 @@ function SecondFactor() {
   );
 }
 
-function Credentials() {
-  const { t } = usePreferences();
-  const { refresh } = useAccount();
-  const [creating, setCreating] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [sent, setSent] = useState(false);
-  const [busy, setBusy] = useState(false);
-
-  async function submit(event: FormEvent) {
-    event.preventDefault();
-    setBusy(true);
-    setError("");
-    const result = creating
-      ? await supabase.auth.signUp({ email, password, options: { data: { full_name: name.trim() } } })
-      : await supabase.auth.signInWithPassword({ email, password });
-    setBusy(false);
-    if (result.error) {
-      setError(t.login.errors[result.error?.code ?? ""] ?? result.error?.message ?? "");
-    } else if (!result.data.session) {
-      setSent(true);
-      setCreating(false);
-    } else {
-      await refresh();
-    }
-  }
-
-  return (
-    <form className={FORM} onSubmit={(event) => void submit(event)}>
-      {creating && (
-        <div className={FIELD}>
-          <Label htmlFor="login-name">{t.login.name}</Label>
-          <Input id="login-name" required autoComplete="name" maxLength={64} value={name}
-            onChange={(e) => setName(e.target.value)} />
-        </div>
-      )}
-      <div className={FIELD}>
-        <Label htmlFor="login-email">{t.login.email}</Label>
-        <Input id="login-email" required autoFocus type="email" autoComplete="email" value={email}
-          onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <div className={FIELD}>
-        <Label htmlFor="login-password">{t.login.password}</Label>
-        <Input id="login-password" required type="password" minLength={10}
-          autoComplete={creating ? "new-password" : "current-password"}
-          value={password} onChange={(e) => setPassword(e.target.value)} />
-        {creating && <p className="text-xs text-muted-foreground">{t.login.passwordHint}</p>}
-      </div>
-      {sent && <p className="text-sm text-muted-foreground">{t.login.checkEmail}</p>}
-      {error && <p className="text-sm text-danger">{error}</p>}
-      <Button type="submit" disabled={busy}>{creating ? t.login.signUp : t.login.signIn}</Button>
-      <Button type="button" variant="link" className="text-muted-foreground" onClick={() => setCreating(!creating)}>
-        {creating ? t.login.toSignIn : t.login.toSignUp}
-      </Button>
-    </form>
-  );
-}
-
 function Providers() {
   const { t } = usePreferences();
   const { refresh } = useAccount();
@@ -158,8 +97,6 @@ export default function Login() {
     <CenteredCard title={t.login.title}>
       {account.state === "verify" ? <SecondFactor /> : (
         <>
-          <Credentials />
-          <Separator />
           <Providers />
         </>
       )}
