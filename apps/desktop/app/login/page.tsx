@@ -1,12 +1,12 @@
 "use client";
 
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { Button } from "@relay/ui/components/button";
 import { Input } from "@relay/ui/components/input";
 import { Label } from "@relay/ui/components/label";
 import { GoogleLogo, MicrosoftLogo } from "@relay/ui/components/provider-logos";
 import { Separator } from "@relay/ui/components/separator";
-import { finishLogin, logInWith, type Provider, supabase, useAccount, useGuard } from "../account";
+import { logInWith, type Provider, supabase, useAccount, useGuard } from "../account";
 import { errorMessage } from "../engine";
 import { usePreferences } from "../preferences";
 import { CenteredCard } from "../components/ui";
@@ -150,16 +150,7 @@ function Providers() {
 
 export default function Login() {
   const { t } = usePreferences();
-  const { account, refresh } = useAccount();
-  const [answerError, setAnswerError] = useState("");
-
-  useEffect(() => {
-    const answer = new URLSearchParams(location.search);
-    if (answer.has("code") || answer.has("error")) {
-      history.replaceState(null, "", location.pathname);
-      void finishLogin(answer).then(refresh, (failure: Error) => setAnswerError(failure.message));
-    }
-  }, [refresh]);
+  const { account } = useAccount();
 
   useGuard("/login/");
 
@@ -170,7 +161,6 @@ export default function Login() {
           <Credentials />
           <Separator />
           <Providers />
-          {answerError && <p className="text-sm text-danger">{answerError}</p>}
         </>
       )}
     </CenteredCard>

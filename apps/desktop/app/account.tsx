@@ -90,7 +90,7 @@ export async function removePicture(path: string) {
 
 export type Provider = "azure" | "google";
 
-export async function finishLogin(answer: URLSearchParams) {
+async function finishLogin(answer: URLSearchParams) {
   const failure = answer.get("error_description") ?? answer.get("error");
   if (failure) {
     throw new Error(failure);
@@ -107,15 +107,6 @@ export async function finishLogin(answer: URLSearchParams) {
 
 export async function logInWith(provider: Provider, page: string) {
   const scopes = provider === "azure" ? "email" : undefined;
-  if (!isDesktop()) {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider, options: { scopes, redirectTo: `${location.origin}/login/` },
-    });
-    if (error) {
-      throw error;
-    }
-    return;
-  }
   const port = await invoke<number>("oauth_listen");
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider, options: { scopes, redirectTo: `http://127.0.0.1:${port}/callback`, skipBrowserRedirect: true },
