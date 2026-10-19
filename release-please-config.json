@@ -13,7 +13,8 @@
           "path": "engine/uv.lock",
           "jsonpath": "$.package[?(@.name.value=='relay-engine')].version"
         }
-      ]
+      ],
+      "initial-version": "0.1.0"
     }
   }
 }
