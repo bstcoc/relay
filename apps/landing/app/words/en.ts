@@ -7,6 +7,7 @@ export const en = {
     sections: "Sections",
     links: ["Connections", "Mapping", "Proof", "Security", "FAQ"],
     contact: "Contact",
+    github: "Relay on GitHub",
   },
   download: {
     button: "Download",
