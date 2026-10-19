@@ -7,7 +7,7 @@ export const fr: Words = {
   backToTop: "Relay, retour en haut",
   nav: {
     sections: "Sections",
-    links: ["Connexions", "Correspondances", "Preuve", "Sécurité", "Questions"],
+    links: ["Connexions", "Correspondances", "Preuve", "Questions"],
     contact: "Contact",
   },
   download: {
@@ -41,11 +41,6 @@ export const fr: Words = {
       line: ", avec sa colonne et ses lignes, et attend votre décision",
       list: { title: "Contrôles", items: ["Nombre de lignes", "Empreintes des lignes", "Totaux", "Identifiants gardés en texte", "Liens entre tables"] },
     },
-  },
-  planes: {
-    title: "Vos lignes ne quittent jamais votre réseau",
-    local: { title: "Sur votre ordinateur", items: ["Le moteur Relay", "Vos bases source et cible", "Chaque ligne et chaque valeur", "Vos mots de passe, dans le trousseau"] },
-    relay: { title: "Chez Relay", items: ["Votre compte et votre équipe", "Les noms et hôtes des connexions", "Les correspondances validées", "Les chiffres des rapports et les décisions"] },
   },
   closing: {
     title: "Votre prochaine migration, prouvée",
@@ -105,7 +100,7 @@ export const fr: Words = {
     items: [
       { question: "Relay est-il vraiment gratuit\u00a0?", answer: "Oui. Relay est open source, sous licence Apache 2.0\u00a0: ni clé de licence, ni abonnement, ni essai. Téléchargez-le, utilisez-le au travail, lisez et modifiez le code." },
       { question: "Où est le code source\u00a0?", answer: "Sur GitHub, à l’adresse github.com/bstcoc/relay. Les tickets et les pull requests sont les bienvenus." },
-      { question: "Mes lignes passent-elles par les serveurs de Relay\u00a0?", answer: "Non. Le moteur tourne sur votre ordinateur et lit vos bases directement. Relay ne garde que des métadonnées, comme votre équipe, les noms et hôtes des connexions, les correspondances validées, les décisions et les chiffres de chaque rapport. Jamais une ligne ni une valeur." },
+      { question: "Mes lignes passent-elles par les serveurs de Relay\u00a0?", answer: "Non. Le moteur tourne sur votre ordinateur et lit vos bases directement. Aucune ligne ni aucune valeur ne nous est jamais envoyée." },
       { question: "Avec quelles bases Relay fonctionne-t-il\u00a0?", answer: "PostgreSQL, Supabase, Neon, SQL Server, MySQL et SQLite, ainsi que les fichiers CSV et Parquet. La source et la cible peuvent utiliser des moteurs et des schémas différents." },
       { question: "Faut-il écrire un script ou un fichier de configuration\u00a0?", answer: "Non. Vous connectez deux bases, acceptez les correspondances proposées colonne par colonne, lancez un essai à blanc, puis migrez. Tout se passe dans l’app." },
       { question: "Relay écrit-il dans ma cible avant mon accord\u00a0?", answer: "Non. Relay propose un essai à blanc avant toute écriture, et écrit en une seule transaction quand la base le permet." },
@@ -165,19 +160,19 @@ export const fr: Words = {
   },
   privacy: {
     title: "Politique de confidentialité",
-    updated: "Mise à jour le 10 octobre 2026",
+    updated: "Mise à jour le 19 octobre 2026",
     sections: [
       { heading: "Responsable du traitement", paragraphs: ["Bastien Cochet, éditeur de Relay, est responsable du traitement. Pour toute question ou demande sur vos données personnelles, écrivez à bastien.cochet.pro@gmail.com."] },
       { heading: "Ce que Relay ne collecte jamais", paragraphs: ["Les lignes et les valeurs de vos bases. Le moteur Relay tourne sur votre ordinateur et lit vos bases directement : aucune ligne ni aucune valeur ne nous est envoyée ni n’est stockée chez nous. Les mots de passe de connexion restent dans le trousseau de votre système, chiffrés pour votre équipe ou dans le coffre de votre entreprise, et ne nous parviennent jamais en clair."] },
       { heading: "Ce site", paragraphs: [
         "Ce site ne dépose aucun cookie et n’utilise aucun outil de mesure d’audience ni de publicité. Votre choix de langue est gardé dans votre navigateur uniquement. Les polices sont servies par ce site, sans appel à un tiers.",
-        "Comme tout site, notre hébergeur garde des journaux techniques, comme les adresses IP, à des fins de sécurité. Les téléchargements et les mises à jour de l’app sont servis par GitHub, selon sa propre politique de confidentialité. Si vous nous écrivez, nous n’utilisons votre adresse que pour vous répondre.",
+        "Comme tout site, notre hébergeur, Vercel, garde des journaux techniques, comme les adresses IP, à des fins de sécurité. Les téléchargements et les mises à jour de l’app sont servis par GitHub, selon sa propre politique de confidentialité. Si vous nous écrivez, nous n’utilisons votre adresse que pour vous répondre.",
       ] },
       { heading: "L’app Relay", paragraphs: [
         "Pour faire fonctionner votre compte et votre équipe, nous gardons : votre nom, votre adresse e-mail et votre photo de profil, issus de votre connexion Google ou Microsoft ; vos équipes, leurs membres et leurs rôles ; les noms et hôtes des connexions ; les correspondances validées ; les chiffres de chaque rapport et les décisions prises sur les écarts.",
         "Nous traitons ces données pour fournir le service que vous utilisez, c’est-à-dire l’exécution de notre contrat, et pour le sécuriser, ce qui relève de notre intérêt légitime.",
       ] },
-      { heading: "Sous-traitants", paragraphs: ["Nous nous appuyons sur Supabase pour les comptes et le stockage, et GitHub pour les téléchargements et les mises à jour. Certains de ces prestataires peuvent traiter des données hors de l’Union européenne, sous les clauses contractuelles types de la Commission européenne ou le Data Privacy Framework UE–États-Unis."] },
+      { heading: "Sous-traitants", paragraphs: ["Nous nous appuyons sur Vercel pour héberger ce site, Supabase pour les comptes et le stockage, et GitHub pour les téléchargements et les mises à jour. Certains de ces prestataires peuvent traiter des données hors de l’Union européenne, sous les clauses contractuelles types de la Commission européenne ou le Data Privacy Framework UE–États-Unis."] },
       { heading: "Durée de conservation", paragraphs: ["Nous gardons les données de compte et d’équipe tant que votre compte existe, et les supprimons quand vous le supprimez. Les journaux techniques sont gardés peu de temps, pour la sécurité uniquement."] },
       { heading: "Vos droits", paragraphs: ["Selon le RGPD, vous pouvez accéder à vos données, les rectifier, les effacer ou les récupérer, limiter leur traitement ou vous y opposer, et définir des directives pour après votre décès. Écrivez à bastien.cochet.pro@gmail.com : nous répondons sous un mois. Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la CNIL (cnil.fr)."] },
       { heading: "Modifications", paragraphs: ["Nous mettrons cette page à jour si ce que nous collectons ou la raison change, et vous préviendrons dans l’app avant un changement important."] },
@@ -185,10 +180,13 @@ export const fr: Words = {
   },
   legal: {
     title: "Mentions légales",
-    trademarks: "Marques",
-    paragraphs: [
+    sections: [
+      { heading: "Éditeur", paragraphs: ["Ce site et l’app Relay sont édités par Bastien Cochet, personne physique, joignable à bastien.cochet.pro@gmail.com. Directeur de la publication : Bastien Cochet."] },
+      { heading: "Hébergement", paragraphs: ["Ce site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis, vercel.com. Les téléchargements de l’app sont hébergés par GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis, github.com."] },
+      { heading: "Marques", paragraphs: [
       "Les noms et logos PostgreSQL, Supabase, Neon, SQL Server, MySQL et SQLite figurent sur ce site uniquement pour indiquer les bases avec lesquelles Relay fonctionne. Relay n’est ni affilié à leurs propriétaires, ni approuvé ou parrainé par eux.",
       "Postgres, PostgreSQL et le logo Slonik sont des marques ou des marques déposées de la PostgreSQL Community Association of Canada, utilisées avec son autorisation. Microsoft et SQL Server sont des marques du groupe Microsoft. Oracle, Java, MySQL et NetSuite sont des marques déposées d’Oracle et/ou de ses filiales. Les autres noms peuvent être des marques de leurs propriétaires respectifs.",
+      ] },
     ],
   },
   invite: {
