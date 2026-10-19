@@ -1,0 +1,23 @@
+name: accounts
+
+on:
+  pull_request:
+    paths: [supabase/**, .github/workflows/accounts.yml]
+  workflow_dispatch:
+
+concurrency:
+  group: accounts-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rules:
+    name: row-level security
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.109.0
+      - run: supabase db start
+      - run: supabase test db

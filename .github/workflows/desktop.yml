@@ -1,0 +1,45 @@
+name: desktop
+
+on:
+  pull_request:
+    paths:
+      - apps/desktop/**
+      - packages/ui/**
+      - package.json
+      - bunfig.toml
+      - bun.lock
+      - .github/workflows/desktop.yml
+  workflow_dispatch:
+
+concurrency:
+  group: desktop-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    name: types, tests, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: bun-${{ runner.os }}-
+      - uses: actions/cache@v4
+        with:
+          path: apps/desktop/.next/cache
+          key: next-desktop-${{ hashFiles('bun.lock') }}-${{ hashFiles('apps/desktop/app/**', 'packages/ui/**') }}
+          restore-keys: next-desktop-${{ hashFiles('bun.lock') }}-
+      - run: bun install --frozen-lockfile
+      - working-directory: apps/desktop
+        run: bun run typecheck && bun test
+      - working-directory: packages/ui
+        run: bun run typecheck
+      - working-directory: apps/desktop
+        run: bun run build && bun run shell
+

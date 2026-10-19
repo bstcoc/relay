@@ -1,0 +1,38 @@
+version: 1
+entity: factures
+
+source:
+  table: factures_legacy
+target:
+  table: factures_target
+
+match_key:
+  - facture_id
+
+columns:
+  - source: facture
+    target: facture_id
+    type: string
+
+  - source: chantier
+    target: chantier_id
+    type: string
+
+  - source: mnt_ht
+    target: montant_hors_taxes
+    type: decimal(12,2)
+    tolerance: 0.01
+
+  - source: dt
+    target: date_facture
+    type: date
+    normalize: date_only
+
+references:
+  - column: chantier_id
+    table: chantiers_target
+    key: chantier_id
+
+business_rules:
+  - name: montant_positif
+    check: "montant_hors_taxes > 0"

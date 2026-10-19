@@ -1,0 +1,150 @@
+name: engine
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: engine-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: engine
+
+jobs:
+  changes:
+    name: engine changed
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      pull-requests: read
+    outputs:
+      engine: ${{ steps.files.outputs.engine }}
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - id: files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != pull_request ]; then
+            echo engine=true >> "$GITHUB_OUTPUT"
+          elif gh api "repos/$GITHUB_REPOSITORY/pulls/${{ github.event.pull_request.number }}/files" --paginate \
+            --jq '.[].filename' | grep -qE '^(engine/|\.github/workflows/engine\.yml$)'; then
+            echo engine=true >> "$GITHUB_OUTPUT"
+          else
+            echo engine=false >> "$GITHUB_OUTPUT"
+          fi
+
+  checks:
+    name: tests, lint, types
+    needs: changes
+    if: needs.changes.outputs.engine == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+      - run: uv sync --locked --all-extras
+      - run: uv run pytest
+      - run: uv run ruff check .
+      - run: uv run ty check
+      - run: uv run python scripts/oracle_scan.py --seeds 12
+
+  install:
+    name: install on ${{ matrix.os }}
+    needs: changes
+    if: needs.changes.outputs.engine == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(github.event_name == 'workflow_dispatch'
+          && '["ubuntu-latest", "windows-latest", "macos-latest"]'
+          || '["ubuntu-latest"]') }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: engine/uv.lock
+      - run: uv tool install "$GITHUB_WORKSPACE/engine"
+      - run: uv tool dir --bin >> "$GITHUB_PATH"
+      - name: run relay outside the repository
+        working-directory: ${{ runner.temp }}
+        run: |
+          relay version
+          relay generate --out data
+          relay run "$GITHUB_WORKSPACE/engine/examples/mappings" --data data --out runs
+
+  servers:
+    name: migrations on database servers
+    needs: changes
+    if: needs.changes.outputs.engine == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: relay
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-retries 20
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: relay
+          MYSQL_DATABASE: relay
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd "mysqladmin ping -h 127.0.0.1 -prelay" --health-interval 5s --health-retries 30
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: Relay_pass1
+        ports: ["1433:1433"]
+        options: >-
+          --health-cmd "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P Relay_pass1 -Q 'SELECT 1'"
+          --health-interval 10s --health-retries 30
+    env:
+      RELAY_TEST_POSTGRESQL: postgresql://postgres:relay@localhost:5432/postgres
+      RELAY_TEST_MYSQL: mysql://root:relay@127.0.0.1:3306/relay
+      RELAY_TEST_MSSQL: mssql://sa:Relay_pass1@localhost:1433/master
+      RELAY_TEST_SSH: ssh://relay:relay@127.0.0.1:2222
+      RELAY_TEST_SSH_POSTGRESQL: postgresql://postgres:relay@remote-pg:5432/postgres
+      RELAY_TEST_SSL_POSTGRESQL: postgresql://postgres:relay@localhost:5433/postgres
+      RELAY_TEST_SSL_CA: /tmp/remote-pg.pem
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+      - name: start an SSH server and a PostgreSQL with SSL
+        run: |
+          docker network create remote
+          docker run -d --name remote-pg --network remote -p 5433:5432 \
+            -e POSTGRES_PASSWORD=relay postgres:17 \
+            -c ssl=on -c ssl_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem \
+            -c ssl_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+          docker run -d --name remote-ssh --network remote -p 2222:2222 \
+            -e USER_NAME=relay -e USER_PASSWORD=relay -e PASSWORD_ACCESS=true \
+            -e DOCKER_MODS=linuxserver/mods:openssh-server-ssh-tunnel \
+            lscr.io/linuxserver/openssh-server:latest
+          uv sync --locked --all-extras
+          until docker exec remote-pg pg_isready -U postgres; do sleep 2; done
+          until docker logs remote-ssh 2>&1 | grep -q "TcpForwarding is enabled"; do sleep 2; done
+          until docker logs remote-ssh 2>&1 | grep -q "ls.io-init] done"; do sleep 2; done
+          mkdir -p ~/.ssh && ssh-keyscan -p 2222 127.0.0.1 >> ~/.ssh/known_hosts
+          docker cp remote-pg:/etc/ssl/certs/ssl-cert-snakeoil.pem "$RELAY_TEST_SSL_CA"
+      - run: uv run pytest tests/test_migrate_servers.py tests/test_remote_servers.py -rs

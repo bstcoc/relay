@@ -1,0 +1,104 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  version:
+    name: release pull request
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      created: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071
+
+  package:
+    name: package for ${{ matrix.os }}
+    needs: version
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.version.outputs.created == 'true')
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+    env:
+      ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+      ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
+      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
+      NUITKA_CACHE_DIR: ${{ github.workspace }}/.cache/nuitka
+      CCACHE_DIR: ${{ github.workspace }}/.cache/nuitka/ccache
+      EP_GH_IGNORE_TIME: "true"
+      PUBLISH: ${{ needs.version.outputs.created == 'true' && 'always' || 'never' }}
+      TAG: ${{ needs.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.version.outputs.tag || github.ref }}
+      - uses: oven-sh/setup-bun@v2
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: engine/uv.lock
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: bun-${{ runner.os }}-
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .cache/electron
+            .cache/electron-builder
+          key: electron-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: electron-${{ runner.os }}-
+      - uses: actions/cache@v4
+        with:
+          path: .cache/nuitka
+          key: nuitka-${{ runner.os }}-${{ hashFiles('engine/uv.lock', 'engine/src/**', 'engine/scripts/**') }}
+          restore-keys: nuitka-${{ runner.os }}-
+      - if: runner.os == 'Linux'
+        run: sudo apt-get install -y --no-install-recommends ccache
+      - run: bun install --frozen-lockfile
+      - run: engine/scripts/build_engine.sh
+      - name: the relay command runs without a license
+        working-directory: engine/dist/relay-service
+        run: |
+          if [ -f relay-service.exe ]; then cp relay-service.exe relay.exe; else cp relay-service relay; fi
+          ./relay version
+          ./relay generate --out "$RUNNER_TEMP/data"
+          rm -f relay relay.exe
+      - name: build the app and publish it to the release
+        working-directory: apps/desktop
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bun run build
+          bun run shell
+          bunx electron-builder --config electron-builder.engine.yml --publish "$PUBLISH"
+      - if: env.PUBLISH == 'never'
+        uses: actions/upload-artifact@v4
+        with:
+          name: relay-${{ runner.os }}
+          path: |
+            apps/desktop/release/Relay-*
+            apps/desktop/release/latest*.yml
+          if-no-files-found: error
+

@@ -1,0 +1,54 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/24 16:54:53 WARN Utils: Your hostname, Bastiens-MacBook-Air.local, resolves to a loopback address: 127.0.0.1; using 10.109.252.145 instead (on interface en0)
+26/09/24 16:54:53 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+:: loading settings :: url = jar:file:/Users/bastien/data/relay/engine/.venv/lib/python3.12/site-packages/pyspark/jars/ivy-2.5.3.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /Users/bastien/.ivy2.5.2/cache
+The jars for the packages stored in: /Users/bastien/.ivy2.5.2/jars
+org.xerial#sqlite-jdbc added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-ad6c3b61-a557-4e9d-a54a-0f995d318cfe;1.0
+	confs: [default]
+	found org.xerial#sqlite-jdbc;3.53.4.0 in central
+:: resolution report :: resolve 56ms :: artifacts dl 1ms
+	:: modules in use:
+	org.xerial#sqlite-jdbc;3.53.4.0 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   1   |   0   |   0   |   0   ||   1   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-ad6c3b61-a557-4e9d-a54a-0f995d318cfe
+	confs: [default]
+	0 artifacts copied, 1 already retrieved (0kB/2ms)
+26/09/24 16:54:53 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/24 16:56:43 WARN Utils: Your hostname, Bastiens-MacBook-Air.local, resolves to a loopback address: 127.0.0.1; using 10.109.252.145 instead (on interface en0)
+26/09/24 16:56:43 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+:: loading settings :: url = jar:file:/Users/bastien/data/relay/engine/.venv/lib/python3.12/site-packages/pyspark/jars/ivy-2.5.3.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /Users/bastien/.ivy2.5.2/cache
+The jars for the packages stored in: /Users/bastien/.ivy2.5.2/jars
+org.xerial#sqlite-jdbc added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-edbdf169-b99d-4f79-91ab-314b43669816;1.0
+	confs: [default]
+	found org.xerial#sqlite-jdbc;3.53.4.0 in central
+:: resolution report :: resolve 63ms :: artifacts dl 1ms
+	:: modules in use:
+	org.xerial#sqlite-jdbc;3.53.4.0 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   1   |   0   |   0   |   0   ||   1   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-edbdf169-b99d-4f79-91ab-314b43669816
+	confs: [default]
+	0 artifacts copied, 1 already retrieved (0kB/2ms)
+26/09/24 16:56:43 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).

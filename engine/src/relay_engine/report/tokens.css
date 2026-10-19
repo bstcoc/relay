@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap");
+
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --background: #ffffff;
+  --surface: #fafafa;
+  --surface-muted: #f2f2f2;
+  --border: #ebebeb;
+  --border-strong: #8f8f8f;
+  --ink: #171717;
+  --ink-muted: #666666;
+  --on-ink: #ffffff;
+  --verified: #00708c;
+  --verified-soft: #e2f4f8;
+  --danger: #d0242a;
+  --danger-soft: #fdecec;
+  --pending: #a35200;
+  --pending-soft: #fff4e0;
+  --accent: #0068d6;
+  --status-verified: #2bc9a8;
+  --status-pending: #f5a623;
+  --status-danger: #ee0000;
+  --focus: var(--accent);
+  --shadow-popover: 0 0 0 1px #00000014, 0 1px 1px #00000005, 0 4px 8px -4px #0000000a, 0 16px 24px -8px #0000000f;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --surface: #000000;
+  --surface-muted: #1a1a1a;
+  --border: #2e2e2e;
+  --border-strong: #878787;
+  --ink: #ededed;
+  --ink-muted: #a1a1a1;
+  --on-ink: #0a0a0a;
+  --verified: #3cc4e0;
+  --verified-soft: #062a33;
+  --danger: #ff6166;
+  --danger-soft: #3a0d0f;
+  --pending: #ffb224;
+  --pending-soft: #3a2600;
+  --accent: #47a8ff;
+  --status-verified: #50e3c2;
+  --status-pending: #ffb224;
+  --status-danger: #ff4d4f;
+  --shadow-popover: 0 0 0 1px #ffffff24, 0 16px 24px -8px #000000b3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: #0a0a0a;
+    --surface: #000000;
+    --surface-muted: #1a1a1a;
+    --border: #2e2e2e;
+    --border-strong: #878787;
+    --ink: #ededed;
+    --ink-muted: #a1a1a1;
+    --on-ink: #0a0a0a;
+    --verified: #3cc4e0;
+    --verified-soft: #062a33;
+    --danger: #ff6166;
+    --danger-soft: #3a0d0f;
+    --pending: #ffb224;
+    --pending-soft: #3a2600;
+    --accent: #47a8ff;
+    --status-verified: #50e3c2;
+    --status-pending: #ffb224;
+    --status-danger: #ff4d4f;
+  --shadow-popover: 0 0 0 1px #ffffff24, 0 16px 24px -8px #000000b3;
+  }
+}
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-sans);
+}
+
+/* Styles typographiques */
+.display { font-family: var(--font-sans); font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -1.28px; }
+.heading-1 { font-family: var(--font-sans); font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.8px; }
+.heading-2 { font-family: var(--font-sans); font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.36px; }
+.heading-3 { font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 600; letter-spacing: -0.18px; }
+.body { font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 400; }
+.body-small { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400; }
+.label { font-family: var(--font-sans); font-size: 13px; line-height: 16px; font-weight: 500; }
+.caption { font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500; }
+.mono { font-family: var(--font-mono); font-size: 13px; line-height: 20px; font-weight: 400; }
+.mono-small { font-family: var(--font-mono); font-size: 12px; line-height: 16px; font-weight: 400; }

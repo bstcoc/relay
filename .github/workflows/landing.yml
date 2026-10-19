@@ -1,0 +1,43 @@
+name: landing
+
+on:
+  pull_request:
+    paths:
+      - apps/landing/**
+      - packages/ui/**
+      - package.json
+      - bun.lock
+      - .github/workflows/landing.yml
+  workflow_dispatch:
+
+concurrency:
+  group: landing-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+
+jobs:
+  site:
+    name: types and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/landing
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: bun-${{ runner.os }}-
+      - uses: actions/cache@v4
+        with:
+          path: apps/landing/.next/cache
+          key: next-landing-${{ hashFiles('bun.lock') }}-${{ hashFiles('apps/landing/app/**', 'packages/ui/**') }}
+          restore-keys: next-landing-${{ hashFiles('bun.lock') }}-
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun run build

@@ -1,0 +1,4 @@
+extends: ./electron-builder.yml
+extraResources:
+  - from: ../../engine/dist/relay-service
+    to: engine

@@ -1,0 +1,169 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/preflight.css" layer(base);
+@import "@relay/ui/globals.css";
+
+@theme {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --animate-rise: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-breathe: breathe 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+      transform: translateY(12px);
+    }
+  }
+
+  @keyframes breathe {
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+}
+
+@keyframes tilt {
+  from { transform: perspective(1800px) rotateX(18deg) scale(0.93); }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes draw-x {
+  from { transform: scaleX(0); }
+}
+
+@keyframes draw-y {
+  from { transform: scaleY(0); }
+}
+
+@keyframes surface {
+  from {
+    opacity: 0;
+    translate: 0 70%;
+  }
+}
+
+@keyframes grow {
+  from { transform: scaleY(0); }
+}
+
+@layer components {
+  .grow-bar {
+    transform-origin: bottom;
+  }
+
+  .draw-x {
+    transform-origin: left;
+  }
+
+  .draw-down {
+    transform-origin: top;
+  }
+
+  .draw-up {
+    transform-origin: bottom;
+  }
+
+  .faq::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition: block-size 250ms var(--ease-out-strong), content-visibility 250ms allow-discrete;
+  }
+
+  .faq[open]::details-content {
+    block-size: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+
+    .grow-bar {
+      animation: grow 700ms var(--ease-out-strong) both;
+      animation-delay: calc(400ms + var(--index) * 20ms);
+    }
+
+    @supports (animation-timeline: view()) {
+      .hero-tilt {
+        transform-origin: 50% 0;
+        animation: tilt linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 70vh;
+      }
+
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 35%;
+      }
+
+      .stagger {
+        animation: slide-in linear both;
+        animation-timeline: view();
+        animation-range: entry calc(20% + var(--index) * 8%) entry calc(80% + var(--index) * 8%);
+      }
+
+      .footer {
+        view-timeline: --footer block;
+      }
+
+      .footer-word {
+        animation: surface linear both;
+        animation-timeline: --footer;
+        animation-range: entry 20% entry 100%;
+      }
+
+      .footer-rise {
+        animation: slide-in linear both;
+        animation-timeline: --footer;
+        animation-range: entry calc(5% + var(--index, 0) * 6%) entry calc(55% + var(--index, 0) * 6%);
+      }
+
+      .map-timeline {
+        view-timeline: --map block;
+      }
+
+      .draw-x,
+      .draw-down,
+      .draw-up {
+        animation: draw-x linear both;
+        animation-timeline: --map;
+        animation-range: entry calc(60% + var(--index) * 6%) cover calc(40% + var(--index) * 3%);
+      }
+
+      .draw-down,
+      .draw-up {
+        animation-name: draw-y;
+      }
+
+      .pop-in {
+        animation: pop linear both;
+        animation-timeline: --map;
+        animation-range: entry calc(40% + var(--index) * 10%) cover calc(30% + var(--index) * 5%);
+      }
+    }
+  }
+}

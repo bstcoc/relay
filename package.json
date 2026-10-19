@@ -1,0 +1,15 @@
+{
+  "name": "relay",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "desktop": "bun run --cwd apps/desktop app"
+  },
+  "trustedDependencies": [
+    "electron"
+  ],
+  "version": "0.0.0"
+}

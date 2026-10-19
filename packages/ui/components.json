@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@relay/ui/components",
+    "utils": "@relay/ui/lib/utils",
+    "hooks": "@relay/ui/hooks",
+    "lib": "@relay/ui/lib",
+    "ui": "@relay/ui/components"
+  }
+}

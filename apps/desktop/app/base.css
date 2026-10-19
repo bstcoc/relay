@@ -1,0 +1,29 @@
+@import "tailwindcss/preflight.css" layer(base);
+
+@layer base {
+  [aria-busy="true"] {
+    animation: late 0s 0.2s both;
+  }
+}
+
+@keyframes late {
+  from {
+    visibility: hidden;
+  }
+  to {
+    visibility: visible;
+  }
+}
+
+[data-drag-region] {
+  -webkit-app-region: drag;
+}
+
+[data-drag-region] :is(a, button, input, select, textarea, label, [role], [data-slot="card"]) {
+  -webkit-app-region: no-drag;
+}
+
+[data-instant],
+[data-slot="dialog-overlay"]:has(+ [data-instant]) {
+  animation: none;
+}

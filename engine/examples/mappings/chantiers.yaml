@@ -1,0 +1,35 @@
+version: 1
+entity: chantiers
+
+source:
+  table: chantiers_legacy
+target:
+  table: chantiers_target
+
+match_key:
+  - chantier_id
+
+columns:
+  - source: chantier
+    target: chantier_id
+    type: string
+
+  - source: lib
+    target: libelle
+    type: string
+    normalize: [trim]
+
+  - source: mnt_marche
+    target: montant_marche
+    type: decimal(12,2)
+    tolerance: 0.01
+
+  - source: dt_ouv
+    target: date_ouverture
+    type: date
+    normalize: date_only
+
+  - source: adresse_complete
+    target: [rue, code_postal, ville]
+    transform: split
+    separator: ", "

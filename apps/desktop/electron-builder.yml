@@ -1,0 +1,39 @@
+appId: app.relay.desktop
+productName: Relay
+directories:
+  output: release
+files:
+  - dist-electron/**
+  - out/**
+  - package.json
+asarUnpack:
+  - "**/*.node"
+publish:
+  provider: github
+  owner: bstcoc
+  repo: relay
+  releaseType: release
+mac:
+  category: public.app-category.developer-tools
+  identity: "-"
+  target:
+    - target: dmg
+      arch: arm64
+    - target: zip
+      arch: arm64
+  artifactName: Relay-macOS-AppleSilicon.${ext}
+win:
+  target:
+    - target: nsis
+      arch: x64
+  artifactName: Relay-Windows.${ext}
+linux:
+  category: Development
+  maintainer: Relay
+  target:
+    - target: AppImage
+      arch: x64
+    - target: deb
+      arch: x64
+  artifactName: Relay-Linux.${ext}
+executableName: relay
