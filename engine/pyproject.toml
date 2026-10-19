@@ -1,6 +1,6 @@
 [project]
 name = "relay-engine"
-version = "0.0.0"
+version = "0.1.0"
 description = "Moteur de migration et de réconciliation de données"
 authors = [{ name = "bstcoc", email = "bastien.cochet@epitech.eu" }]
 requires-python = ">=3.14"
