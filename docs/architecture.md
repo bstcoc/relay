@@ -4,8 +4,8 @@
 
 ```
 ┌─ App ─────────────────────────────────────┐   the product
-│  infrastructure · schema map               │   desktop first (Electron),
-│  mappings · migration · proof              │   web later
+│  infrastructure · schema map               │   a desktop app (Electron)
+│  mappings · migration · proof              │
 └────────────────────┬──────────────────────┘
                      │ stdin / stdout, JSON
 ┌────────────────────▼──────────────────────┐
@@ -36,10 +36,6 @@ is another consumer of it.
 Each database is an **adapter** of the core: read its schema, read its data,
 write to it. The core only knows Polars and abstract interfaces, so adding a
 database does not touch the rest.
-
-The web app will come after the desktop app, with an **agent** installed on
-the user's side to reach private databases: a hosted app cannot reach them
-directly.
 
 ## A migration inside the engine
 

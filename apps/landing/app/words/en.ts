@@ -5,7 +5,7 @@ export const en = {
   backToTop: "Relay, back to top",
   nav: {
     sections: "Sections",
-    links: ["Connections", "Mapping", "Proof", "Security", "FAQ"],
+    links: ["Connections", "Mapping", "Proof", "FAQ"],
     contact: "Contact",
   },
   download: {
@@ -39,11 +39,6 @@ export const en = {
       line: ", with its column and its rows, and waits for your decision",
       list: { title: "Checks", items: ["Row counts", "Row fingerprints", "Totals", "Identifiers kept as text", "Links between tables"] },
     },
-  },
-  planes: {
-    title: "Your rows never leave your network",
-    local: { title: "On your computer", items: ["The Relay engine", "Your source and target databases", "Every row and every value", "Your passwords, in the keychain"] },
-    relay: { title: "At Relay", items: ["Your account and your team", "Connection names and hosts", "Validated mappings", "Report numbers and decisions"] },
   },
   closing: {
     title: "Your next migration, proved",
@@ -103,7 +98,7 @@ export const en = {
     items: [
       { question: "Is Relay really free?", answer: "Yes. Relay is open source under the Apache 2.0 license: no license key, no subscription, no trial. Download it, use it at work, read and change the code." },
       { question: "Where is the source code?", answer: "On GitHub, at github.com/bstcoc/relay. Issues and pull requests are welcome." },
-      { question: "Do my rows go through Relay’s servers?", answer: "No. The engine runs on your computer and reads your databases directly. Relay keeps metadata only, such as your team, connection names and hosts, validated mappings, decisions and the numbers of each report. Never a row or a value." },
+      { question: "Do my rows go through Relay’s servers?", answer: "No. The engine runs on your computer and reads your databases directly. No row and no value is ever sent to us." },
       { question: "Which databases does Relay work with?", answer: "PostgreSQL, Supabase, Neon, SQL Server, MySQL and SQLite, plus CSV and Parquet files. Source and target can run on different engines, with different schemas." },
       { question: "Do I need to write a script or a config file?", answer: "No. You connect two databases, accept the suggested mapping column by column, run a dry run, then migrate. Everything happens in the app." },
       { question: "Is anything written to my target before I agree?", answer: "No. Relay offers a dry run before writing anything, and writes in a single transaction when the database allows it." },
@@ -163,19 +158,19 @@ export const en = {
   },
   privacy: {
     title: "Privacy policy",
-    updated: "Last updated on 10 October 2026",
+    updated: "Last updated on 19 October 2026",
     sections: [
       { heading: "Who is responsible", paragraphs: ["Bastien Cochet, publisher of Relay, is the data controller. For any question or request about your personal data, write to bastien.cochet.pro@gmail.com."] },
       { heading: "What Relay never collects", paragraphs: ["The rows and values of your databases. The Relay engine runs on your computer and reads your databases directly: no row and no value is sent to us or stored by us. Connection passwords stay in your system keychain, encrypted for your team, or in your company’s vault, and never reach us in plain text."] },
       { heading: "This website", paragraphs: [
         "This website sets no cookie and uses no analytics or advertising tracker. Your language choice is kept in your browser only. Fonts are served from this site, without calling a third party.",
-        "Like any website, our host keeps technical logs, such as IP addresses, for security. Downloads and updates of the app are served by GitHub, under its own privacy statement. If you write to us, we use your email only to answer you.",
+        "Like any website, our host, Vercel, keeps technical logs, such as IP addresses, for security. Downloads and updates of the app are served by GitHub, under its own privacy statement. If you write to us, we use your email only to answer you.",
       ] },
       { heading: "The Relay app", paragraphs: [
         "To run your account and your team, we keep: your name, email address and profile picture, taken from your Google or Microsoft sign-in; your teams, their members and roles; connection names and hosts; validated mappings; the numbers of each report and the decisions taken on discrepancies.",
         "We process this data to provide the service you use, which is the performance of our contract, and to keep it secure, which is our legitimate interest.",
       ] },
-      { heading: "Processors", paragraphs: ["We rely on Supabase for accounts and storage, and GitHub for downloads and updates. Some of these providers may process data outside the European Union, under the European Commission’s standard contractual clauses or the EU-US Data Privacy Framework."] },
+      { heading: "Processors", paragraphs: ["We rely on Vercel to host this website, Supabase for accounts and storage, and GitHub for downloads and updates. Some of these providers may process data outside the European Union, under the European Commission’s standard contractual clauses or the EU-US Data Privacy Framework."] },
       { heading: "How long we keep it", paragraphs: ["We keep account and team data while your account exists, and delete it when you delete your account. Technical logs are kept for a short period, for security only."] },
       { heading: "Your rights", paragraphs: ["Under the GDPR, you can access, correct, delete or export your data, restrict or object to its processing, and give instructions for after your death. Write to bastien.cochet.pro@gmail.com: we answer within one month. If you think your rights are not respected, you can complain to the CNIL (cnil.fr)."] },
       { heading: "Changes", paragraphs: ["We will update this page if what we collect or why changes, and tell you in the app before an important change."] },
@@ -183,10 +178,13 @@ export const en = {
   },
   legal: {
     title: "Legal notice",
-    trademarks: "Trademarks",
-    paragraphs: [
+    sections: [
+      { heading: "Publisher", paragraphs: ["This website and the Relay app are published by Bastien Cochet, an individual, reachable at bastien.cochet.pro@gmail.com. Director of publication: Bastien Cochet."] },
+      { heading: "Hosting", paragraphs: ["This website is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States, vercel.com. The app downloads are hosted by GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, United States, github.com."] },
+      { heading: "Trademarks", paragraphs: [
       "The PostgreSQL, Supabase, Neon, SQL Server, MySQL and SQLite names and logos appear on this site only to show which databases Relay works with. Relay is not affiliated with, endorsed or sponsored by their owners.",
       "Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission. Microsoft and SQL Server are trademarks of the Microsoft group of companies. Oracle, Java, MySQL, and NetSuite are registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.",
+      ] },
     ],
   },
   invite: {

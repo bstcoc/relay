@@ -8,7 +8,7 @@ from the code or the documentation.
 
 ## The product
 
-Relay is a **migration assistant app**, desktop first, web later. The user
+Relay is a **migration assistant app** for the desktop. The user
 connects their databases, sees their infrastructure, and runs a migration
 between two databases, same schema or not, same engine or not. Relay does
 it, then proves it.

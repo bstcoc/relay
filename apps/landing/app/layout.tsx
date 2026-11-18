@@ -22,7 +22,7 @@ const LANGUAGE = `(() => {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} scroll-pt-16  motion-reduce:scroll-auto`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${sans.variable} scroll-pt-16  motion-reduce:scroll-auto`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: LANGUAGE }} />
       </head>

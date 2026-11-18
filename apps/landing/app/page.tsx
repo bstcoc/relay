@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Button } from "@relay/ui/components/button";
 import { cn } from "@relay/ui/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -123,27 +123,6 @@ export default function Landing() {
           screen="migrations" heading={<MigrationTitle from="Customer platform" to="Customer platform v2" />}>
           <ReportScreen />
         </Feature>
-
-        <section id="security" className={cn(FRAME, SECTION_GAP, "flex flex-col gap-12")}>
-          <h2 className={SECTION_TITLE}>{t.planes.title}</h2>
-          <div className="reveal grid grid-cols-2 overflow-clip rounded-xl border border-border bg-background max-[760px]:grid-cols-1">
-            {[t.planes.local, t.planes.relay].map((plane, index) => (
-              <div key={plane.title} className={cn("p-8 max-[760px]:p-6", index === 0 ? "border-r border-border max-[760px]:border-r-0 max-[760px]:border-b" : "bg-surface")}>
-                <h3 className={cn("mb-4 flex items-center gap-3 text-xl font-semibold tracking-[-0.02em] before:size-2 before:rounded-full",
-                  index === 0 ? "before:bg-status-verified" : "before:bg-action")}>
-                  {plane.title}
-                </h3>
-                <ul>
-                  {plane.items.map((item, position) => (
-                    <li key={item} style={{ "--index": position } as CSSProperties}
-                      className="stagger border-t border-border py-3 text-ink-muted">{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
 
         <Faq />
 

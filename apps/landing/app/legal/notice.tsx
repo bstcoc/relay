@@ -7,7 +7,7 @@ export function Notice() {
   const { t } = useLanguage();
   return (
     <Document title={t.legal.title}>
-      <Sections sections={[{ heading: t.legal.trademarks, paragraphs: t.legal.paragraphs }]} />
+      <Sections sections={t.legal.sections} />
     </Document>
   );
 }

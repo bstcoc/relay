@@ -66,7 +66,6 @@ for the engine and its developer CLI, and
 |---|---|
 | `engine/` | The engine (Python, Polars): read, transform, write, verify; plus a developer CLI |
 | `apps/desktop/` | The desktop app (Electron, Next.js), the main interface |
-| `apps/web/` | The web app, later |
 | `apps/landing/` | The landing page |
 | `packages/ui/` | `@relay/ui`, the shared design system (shadcn/ui, Tailwind CSS) |
 | `packages/contract/` | The results schema shared by the engine and the apps |

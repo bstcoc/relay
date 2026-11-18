@@ -9,7 +9,7 @@ import { Download } from "./download";
 import { LanguageToggle, useLanguage } from "./i18n";
 import { CONTACT } from "./words";
 
-export const NAV_LINKS = ["#connect", "#map", "#proof", "#security", "#faq"];
+export const NAV_LINKS = ["#connect", "#map", "#proof", "#faq"];
 
 export const HERO_ACTIONS = "hero-actions";
 
